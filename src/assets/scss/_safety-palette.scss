@@ -1,0 +1,120 @@
+@use 'sass:map';
+
+$safety_palettes: (
+  0: #000000,
+  10: #1b1d00,
+  20: #2f3300,
+  25: #3a3f00,
+  30: #464a00,
+  35: #515700,
+  40: #5d6300,
+  50: #757d00,
+  60: #8f9800,
+  70: #a9b300,
+  80: #c4d000,
+  90: #dfed21,
+  95: #eefb34,
+  98: #faffaf,
+  99: #feffd5,
+  100: #ffffff,
+  secondary: (
+    0: #000000,
+    10: #1b1d00,
+    20: #2f3300,
+    25: #3a3f00,
+    30: #464a00,
+    35: #515700,
+    40: #5d6300,
+    50: #757d00,
+    60: #8f9800,
+    70: #a9b300,
+    80: #c4d000,
+    90: #dfed21,
+    95: #eefb34,
+    98: #faffaf,
+    99: #feffd5,
+    100: #ffffff,
+  ),
+  neutral: (
+    0: #000000,
+    10: #1b1c1c,
+    20: #303030,
+    25: #3b3b3b,
+    30: #474747,
+    35: #535252,
+    40: #5f5e5e,
+    50: #787777,
+    60: #929090,
+    70: #acabaa,
+    80: #c8c6c6,
+    90: #e4e2e1,
+    95: #f3f0f0,
+    98: #fbf9f8,
+    99: #fefcfb,
+    100: #ffffff,
+    4: #0e0e0e,
+    6: #131313,
+    12: #1f2020,
+    17: #2a2a2a,
+    22: #353535,
+    24: #393939,
+    87: #dcd9d9,
+    92: #eae7e7,
+    94: #f0eded,
+    96: #f6f3f2,
+  ),
+  neutral-variant: (
+    0: #000000,
+    10: #1b1c1c,
+    20: #303030,
+    25: #3b3b3b,
+    30: #474747,
+    35: #535252,
+    40: #5f5e5e,
+    50: #787777,
+    60: #929090,
+    70: #acabaa,
+    80: #c8c6c6,
+    90: #e4e2e1,
+    95: #f3f0f0,
+    98: #fbf9f8,
+    99: #fefcfb,
+    100: #ffffff,
+  ),
+  error: (
+    0: #000000,
+    10: #410002,
+    20: #690005,
+    25: #7e0007,
+    30: #93000a,
+    35: #a80710,
+    40: #ba1a1a,
+    50: #de3730,
+    60: #ff5449,
+    70: #ff897d,
+    80: #ffb4ab,
+    90: #ffdad6,
+    95: #ffedea,
+    98: #fff8f7,
+    99: #fffbff,
+    100: #ffffff,
+  )
+);
+
+// Helper function
+@function saf-color($palette, $key) {
+  @return map.get($palette, $key);
+}
+
+// Convenience variables
+$saf-primary-dark:    map.get($safety_palettes, 20);   // #2f3300
+$saf-primary-medium:  map.get($safety_palettes, 30);   // #464a00
+$saf-primary-accent:  map.get($safety_palettes, 80);   // #c4d000
+$saf-primary-bright:  map.get($safety_palettes, 90);   // #dfed21
+
+$neutral: map.get($safety_palettes, neutral);
+$saf-neutral-4:       map.get($neutral, 4);    // #0e0e0e
+$saf-neutral-10:      map.get($neutral, 10);   // #1b1c1c
+$saf-neutral-17:      map.get($neutral, 17);   // #2a2a2a
+$saf-neutral-20:      map.get($neutral, 20);   // #303030
+$saf-neutral-30:      map.get($neutral, 30);   // #474747
