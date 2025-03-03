@@ -1,0 +1,171 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use 'safety-palette' as saf;
+
+$safety-color: rgba(209, 222, 0, 1);
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: saf.$safety_palettes,
+        tertiary: saf.$safety_palettes,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+  @include mat.slide-toggle-overrides((
+    track-height: 26px,
+    with-icon-handle-size: 18px,
+    track-width: 46px,
+    touch-target-display: none,
+    state-layer-size: 0,
+  ));
+}
+
+// Track-Farbe wenn eingeschaltet (safety palette 90 = #dfed21)
+.mdc-switch__track::after {
+  background: map.get(saf.$safety_palettes, 90) !important;
+}
+
+// Handle/Thumb-Farbe wenn eingeschaltet
+.mat-mdc-slide-toggle .mdc-switch.mdc-switch--selected .mdc-switch__handle::after {
+  background-color: $safety-color !important;
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+}
+.mat-mdc-tooltip .mdc-tooltip__surface {
+  background-color: #666666 !important;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  box-sizing: border-box;
+  scrollbar-color: $safety-color #303030;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #303030;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $safety-color;
+  border-radius: 4px;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+// ── Hexagon (small) ─────────────────────────────────────────────────────────
+.hexagon-small {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 22px;
+  margin: 10px 0;
+  border-radius: 4px / 6px;
+}
+
+.hexagon-small::before,
+.hexagon-small::after {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: inherit;
+  content: '';
+}
+
+.hexagon-small::before { transform: rotate(60deg); }
+.hexagon-small::after  { transform: rotate(-60deg); }
+
+.hex-icon-div-small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .hexIcon {
+    color: white;
+    height: 20px;
+    width: 20px;
+    font-size: 20px;
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+// ── Modulfarben ──────────────────────────────────────────────────────────────
+.userAdministration  { background-color: rgba(209, 222, 0, 1) !important; }
+.observation         { background-color: rgba(97, 165, 48) !important; }
+.audit               { background-color: rgba(33, 112, 196) !important; }
+.hazardAssessment    { background-color: rgba(212, 185, 15) !important; }
+.instruction         { background-color: rgba(226, 110, 18) !important; }
+.schooling           { background-color: rgb(113, 212, 255) !important; }
+.qualification       { background-color: rgb(87, 220, 20) !important; }
+.medical             { background-color: #1f6533 !important; }
+.screening           { background-color: rgb(58, 120, 150) !important; }
+.inspection          { background-color: rgb(162, 167, 159) !important; }
+.externalCompanies   { background-color: rgba(123, 122, 123) !important; }
+.measurement         { background-color: rgba(193, 62, 156) !important; }
+.hazardousSubstance  { background-color: rgb(33, 147, 30) !important; }
+.controlling         { background-color: rgb(129, 8, 194) !important; }
+.alle                { background-color: rgba(209, 222, 0, 1) !important; }
+
+// ── Contact Dialog Panel ────────────────────────────────────────────────────
+.contact-dialog-panel {
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    background: #474747 !important;
+    border-radius: 12px !important;
+  }
+
+  @media (max-width: 480px) {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    .mat-mdc-dialog-container {
+      padding: 0 !important;
+
+      .mdc-dialog__surface {
+        border-radius: 0 !important;
+        max-height: 100dvh !important;
+      }
+    }
+  }
+}
