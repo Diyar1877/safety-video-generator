@@ -1,0 +1,70 @@
+<div class="background-wrapper">
+  <div class="top-links">
+    <a class="website-link" href="https://safety-doors.com" target="_blank" rel="noopener">
+      <mat-icon>open_in_new</mat-icon>
+      safety-doors.com
+    </a>
+    <a class="beratung-btn" (click)="openContactDialog()">
+      Demo anfragen
+    </a>
+  </div>
+  <img class="corner top-left" src="images/SAFETY-CORNER.svg" alt=""/>
+  <img class="safety-logo" src="images/safety_2_logo_white.svg" alt="Safety Logo"/>
+  <img class="corner bottom-right" src="images/SAFETY-CORNER.svg" alt=""/>
+
+  <div class="tagline">
+    <p class="tagline-main">Wählen Sie die Module aus, die Sie interessieren, und erstellen Sie daraus eine individuelle Produktpräsentation</p>
+    <p class="tagline-sub">Die ausgewählten Module werden automatisch zu einem Video zusammengestellt, das Ihnen die wichtigsten Möglichkeiten von safety² zeigt.</p>
+  </div>
+
+  <div class="content-row" [class.with-player]="playerVisible">
+
+    <mat-card appearance="outlined" class="module-card">
+      <app-module-list />
+      <p class="basis-hint">
+        <mat-icon class="hint-icon">info</mat-icon>
+        Das Basis-Modul ist bei jedem Paket automatisch mit enthalten.
+      </p>
+      <mat-card-actions class="card-actions">
+        <button class="video-erstellen-btn" mat-raised-button type="button"
+                (click)="generatePlaylist()">
+          Video erstellen
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    @if (playerVisible) {
+      <div class="video-wrapper">
+        <video
+          #videoPlayer
+          controls
+          playsinline
+          webkit-playsinline
+          class="video-player"
+          (ended)="onVideoEnded()">
+        </video>
+        @if (merging) {
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        }
+        <div class="playlist-info">
+          <button mat-button class="video-erstellen-btn" (click)="downloadMerged()" [disabled]="merging">
+            <mat-icon>download</mat-icon> {{ merging ? 'Wird zusammengefügt...' : 'Herunterladen' }}
+          </button>
+          <span class="playlist-label">{{ currentLabel }}</span>
+          <div class="playlist-nav">
+            <button mat-icon-button [disabled]="!hasPrev" (click)="skipPrev()">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            <span class="playlist-counter">{{ currentIndex + 1 }} / {{ playlist.length }}</span>
+            <button mat-icon-button [disabled]="!hasNext" (click)="skipNext()">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+
+  </div>
+
+  <router-outlet />
+</div>

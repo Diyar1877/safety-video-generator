@@ -1,0 +1,377 @@
+@use 'sass:map';
+@use 'safety-palette' as saf;
+
+$neutral:      map.get(saf.$safety_palettes, neutral);
+$bg-surface:   map.get($neutral, 20);   // #303030
+$card-surface: map.get($neutral, 30);   // #474747
+$text-color:   map.get(saf.$safety_palettes, 100);  // #ffffff
+$safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: $bg-surface;
+  color: $text-color;
+}
+
+.top-links {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @media (max-width: 480px) {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    left: auto;
+    gap: 8px;
+    z-index: 10;
+  }
+}
+
+.beratung-btn {
+  display: flex;
+  align-items: center;
+  background: #c4d000;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+
+  @media (max-width: 480px) {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+}
+
+.website-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: $safety-color;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border: 1px solid rgba(223, 237, 33, 0.4);
+  border-radius: 20px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: rgba(223, 237, 33, 0.1);
+    border-color: $safety-color;
+  }
+
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 11px;
+    padding: 5px 12px;
+
+    mat-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+.background-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background-color: $bg-surface;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  padding: 0 16px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.corner {
+  position: absolute;
+  width: 400px;
+  height: 238px;
+
+  @media (max-width: 768px) {
+    width: 250px;
+    height: 149px;
+  }
+
+  @media (max-width: 480px) {
+    width: 160px;
+    height: 95px;
+  }
+}
+
+.top-left {
+  top: 0;
+  left: 0;
+  transform: rotate(180deg);
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.safety-logo {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 150px;
+
+  @media (max-width: 768px) {
+    width: 220px;
+    height: 110px;
+    top: 30px;
+  }
+
+  @media (max-width: 480px) {
+    width: 180px;
+    height: 90px;
+    top: 50px;
+  }
+}
+
+.tagline {
+  z-index: 1;
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  max-width: 680px;
+  width: 90%;
+
+  @media (max-width: 768px) {
+    top: 150px;
+  }
+
+  @media (max-width: 480px) {
+    top: 145px;
+  }
+}
+
+.tagline-main {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0 0 8px;
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+.tagline-sub {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+
+.content-row {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 90%;
+  max-width: 760px;
+  margin-top: 335px;
+  margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    margin-top: 310px;
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 260px;
+    width: 95%;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  &.with-player {
+    flex-direction: row;
+    align-items: stretch;
+    max-width: 1400px;
+    width: 95%;
+    margin-top: 335px;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      max-width: 760px;
+      width: 90%;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 310px;
+    }
+
+    @media (max-width: 480px) {
+      margin-top: 260px;
+      width: 95%;
+    }
+  }
+}
+
+.module-card {
+  background-color: $card-surface !important;
+  color: $text-color !important;
+  border: none !important;
+  flex: 0 0 auto;
+  width: 100%;
+
+  .with-player & {
+    width: 600px;
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (max-width: 1024px) {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+
+  * { color: $text-color; }
+}
+
+.basis-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 16px 0;
+  padding: 10px 14px;
+  background: rgba(196, 208, 0, 0.1);
+  border-left: 3px solid $safety-color;
+  border-radius: 4px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+
+  .hint-icon {
+    color: $safety-color;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+}
+
+.card-actions {
+  display: flex;
+  justify-content: center;
+  padding: 12px 16px 19px;
+}
+
+.video-erstellen-btn {
+  background: #c4d000 !important;
+  color: white !important;
+  font-weight: 600;
+}
+
+.video-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  justify-content: space-between;
+}
+
+.video-player {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+}
+
+.playlist-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+  font-size: 13px;
+  width: 100%;
+  background-color: $card-surface;
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  gap: 8px;
+
+  @media (max-width: 480px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+  }
+}
+
+.playlist-label {
+  font-weight: 500;
+  flex: 1;
+  text-align: center;
+
+  @media (max-width: 480px) {
+    order: -1;
+    flex: 0 0 100%;
+    margin-bottom: 4px;
+  }
+}
+
+.playlist-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  ::ng-deep .mat-icon {
+    color: whitesmoke !important;
+  }
+}
+
+.playlist-counter {
+  opacity: 0.6;
+}
+
+.download-btn {
+  color: #ffffff !important;
+}
