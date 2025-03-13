@@ -1,0 +1,23 @@
+<mat-card-content class="block-fields">
+  @for (module of modules; track module.name) {
+    <div class="half-width">
+      @if (module.name === 'userAdministration') {
+        <div class="locked-overlay"
+             matTooltip="Das Modul Basis ist immer mit dem Paket"
+             matTooltipPosition="below"></div>
+      }
+      <mat-slide-toggle
+        [ngModel]="module.enabled"
+        (ngModelChange)="module.enabled = $event">
+        <div class="hexagon-small {{ module.name }}">
+          <div class="hex-icon-div-small">
+            <mat-icon class="hexIcon" fontSet="material-symbols-outlined">
+              {{ module.name | roleIcon }}
+            </mat-icon>
+          </div>
+        </div>
+        {{ module.label }}
+      </mat-slide-toggle>
+    </div>
+  }
+</mat-card-content>
