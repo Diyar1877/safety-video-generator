@@ -1,0 +1,97 @@
+<div class="dialog-container">
+  <button class="close-btn" mat-icon-button (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <h2 class="dialog-title">Freut uns von Ihnen zu hören</h2>
+  <p class="dialog-subtitle">Erzählen Sie uns etwas über Sie und die Anwendungsgebiete die Sie interessieren ...</p>
+
+  <div class="form-row three-col">
+    <mat-form-field appearance="outline">
+      <mat-label>Anrede</mat-label>
+      <mat-select [(ngModel)]="anrede" placeholder="Bitte wählen">
+        <mat-option value="Frau">Frau</mat-option>
+        <mat-option value="Herr">Herr</mat-option>
+        <mat-option value="Divers">Divers</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Vorname</mat-label>
+      <input matInput [(ngModel)]="vorname" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nachname</mat-label>
+      <input matInput [(ngModel)]="nachname" required />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row two-col">
+    <mat-form-field appearance="outline">
+      <mat-label>Firma</mat-label>
+      <input matInput [(ngModel)]="firma" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Mitarbeiterzahl</mat-label>
+      <input matInput [(ngModel)]="mitarbeiter" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row two-col">
+    <mat-form-field appearance="outline">
+      <mat-label>Telefon</mat-label>
+      <input matInput [(ngModel)]="telefon" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="email" required />
+    </mat-form-field>
+  </div>
+
+  <div class="alle-toggle">
+    <mat-slide-toggle
+      [ngModel]="modules[0].enabled"
+      (ngModelChange)="onAlleChange($event)">
+      Alle auswählen
+    </mat-slide-toggle>
+  </div>
+
+  <div class="modules-section">
+    @for (mod of modules; track mod.name; let i = $index) {
+      @if (i > 0) {
+        <div class="module-toggle">
+          @if (mod.name === 'userAdministration') {
+            <div class="locked-overlay"
+                 matTooltip="Das Modul Basis ist immer mit dem Paket"
+                 matTooltipPosition="below"></div>
+          }
+          <mat-slide-toggle
+            [ngModel]="mod.enabled"
+            (ngModelChange)="mod.enabled = $event">
+            <div class="hexagon-small {{ mod.name }}">
+              <div class="hex-icon-div-small">
+                <mat-icon class="hexIcon" fontSet="material-symbols-outlined">{{ mod.icon }}</mat-icon>
+              </div>
+            </div>
+            {{ mod.label }}
+          </mat-slide-toggle>
+        </div>
+      }
+    }
+  </div>
+
+  <p class="basis-hint">
+    <mat-icon class="hint-icon">info</mat-icon>
+    Das Basis-Modul ist bei jedem Paket automatisch mit enthalten.
+  </p>
+
+  <div class="datenschutz-row">
+    <mat-checkbox [(ngModel)]="datenschutz">
+      Ich habe die <a href="https://safety-doors.com/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin damit einverstanden.
+    </mat-checkbox>
+  </div>
+
+  <button class="send-btn" mat-raised-button [disabled]="!isValid" (click)="send()">
+    Senden
+    <mat-icon>arrow_forward</mat-icon>
+  </button>
+</div>

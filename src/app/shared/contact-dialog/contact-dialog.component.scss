@@ -1,0 +1,265 @@
+@use 'sass:map';
+@use 'safety-palette' as saf;
+
+$neutral:      map.get(saf.$safety_palettes, neutral);
+$card-surface: map.get($neutral, 30);
+$safety-color: map.get(saf.$safety_palettes, 90);
+
+.dialog-container {
+  position: relative;
+  padding: 32px;
+  background: $card-surface;
+  color: white;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  @media (max-width: 480px) {
+    padding: 16px;
+    max-height: 100dvh;
+    height: 100dvh;
+    box-sizing: border-box;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #e53935;
+  }
+}
+
+.dialog-title {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 8px;
+  color: white;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    margin: 0 30px 4px 0;
+  }
+}
+
+.dialog-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 24px;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    margin: 0 0 12px;
+  }
+}
+
+// ── Form Rows ───────────────────────────────────────────────────────────────
+.form-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &.three-col mat-form-field {
+    flex: 1;
+
+    &:first-child {
+      flex: 0 0 100px;
+
+      @media (max-width: 480px) {
+        flex: 1;
+      }
+    }
+  }
+
+  &.two-col mat-form-field {
+    flex: 1;
+  }
+}
+
+// ── Form Field Theming ──────────────────────────────────────────────────────
+::ng-deep .dialog-container {
+  .mat-mdc-form-field {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: rgba(255, 255, 255, 0.3) !important;
+    }
+
+    .mat-mdc-input-element,
+    .mat-mdc-select-value {
+      color: white !important;
+    }
+
+    .mat-mdc-select-arrow {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    .mat-mdc-floating-label {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    &.mat-focused {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        border-color: $safety-color !important;
+      }
+
+      .mat-mdc-floating-label {
+        color: $safety-color !important;
+      }
+    }
+  }
+}
+
+// ── Alle Toggle ─────────────────────────────────────────────────────────────
+.alle-toggle {
+  margin: 12px 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+  ::ng-deep .mdc-label {
+    color: white !important;
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
+// ── Module Toggles ──────────────────────────────────────────────────────────
+.modules-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 12px 0;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.module-toggle {
+  position: relative;
+  width: calc(50% - 8px);
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+
+  ::ng-deep .mdc-label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px;
+    color: white !important;
+    font-size: 14px;
+
+    @media (max-width: 480px) {
+      font-size: 13px;
+      gap: 6px;
+    }
+  }
+
+  .hexagon-small {
+    margin: 6px;
+
+    @media (max-width: 480px) {
+      margin: 4px;
+    }
+  }
+}
+
+.locked-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  user-select: none;
+  cursor: default;
+}
+
+// ── Basis Hint ──────────────────────────────────────────────────────────────
+.basis-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+  padding: 10px 14px;
+  background: rgba(196, 208, 0, 0.1);
+  border-left: 3px solid $safety-color;
+  border-radius: 4px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+
+  .hint-icon {
+    color: $safety-color;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+}
+
+// ── Datenschutz ─────────────────────────────────────────────────────────────
+.datenschutz-row {
+  margin: 12px 0;
+
+  ::ng-deep {
+    .mdc-label {
+      color: rgba(255, 255, 255, 0.8) !important;
+      font-size: 13px;
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+      }
+    }
+
+    .mdc-checkbox__background {
+      border-color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    .mdc-checkbox--selected .mdc-checkbox__background {
+      background-color: $safety-color !important;
+      border-color: $safety-color !important;
+    }
+  }
+
+  a {
+    color: $safety-color;
+    text-decoration: underline;
+  }
+}
+
+// ── Send Button ─────────────────────────────────────────────────────────────
+.send-btn {
+  display: flex;
+  margin: 0 auto;
+  background: $safety-color !important;
+  color: white !important;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 32px;
+  border-radius: 24px;
+
+  mat-icon {
+    margin-left: 8px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
