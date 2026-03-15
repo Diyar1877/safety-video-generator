@@ -142,7 +142,7 @@ $safety-color: map.get(saf.$safety_palettes, 90);
 
   @media (max-width: 480px) {
     flex-direction: column;
-    gap: 4px;
+    gap: 10px;
   }
 }
 
