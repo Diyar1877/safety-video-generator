@@ -17,7 +17,6 @@ export class RoleIconPipe implements PipeTransform {
       case 'medical':            return 'local_hospital';
       case 'screening':          return 'multiline_chart';
       case 'inspection':         return 'construction';
-      case 'maintenance':        return 'construction';
       case 'externalCompanies':  return 'business_center';
       case 'measurement':        return 'feedback';
       case 'hazardousSubstance': return 'science';
