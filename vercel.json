@@ -1,0 +1,6 @@
+{
+  "outputDirectory": "dist/safety-video-generator/browser",
+  "rewrites": [
+    { "source": "/((?!safety-videos|images|assets).*)", "destination": "/index.html" }
+  ]
+}

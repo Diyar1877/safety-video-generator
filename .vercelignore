@@ -1,0 +1,6 @@
+backend/
+public/safety-videos/
+public/safety-videos-mp4/
+dist/
+node_modules/
+.angular/

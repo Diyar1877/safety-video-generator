@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx @angular/cli new safety-video-generator --directory . --skip-git --style=scss --ssr=false --force 2>&1)",
+      "Bash(npx ng:*)"
+    ]
+  }
+}

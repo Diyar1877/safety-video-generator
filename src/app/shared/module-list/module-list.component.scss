@@ -1,0 +1,40 @@
+.block-fields {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.half-width {
+  width: calc(50% - 8px);
+  margin-bottom: 10px;
+
+  @media (max-width: 599px) {
+    width: 100%;
+  }
+}
+
+.hexagon-small {
+  margin: 10px;
+
+  @media (max-width: 380px) {
+    margin: 6px;
+  }
+}
+
+::ng-deep .mat-mdc-slide-toggle.locked .mdc-switch,
+::ng-deep .mat-mdc-slide-toggle.locked .mdc-label {
+  pointer-events: none;
+}
+
+:host ::ng-deep .mdc-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-size: 14px;
+
+  @media (max-width: 380px) {
+    font-size: 12px;
+    gap: 4px;
+  }
+}
