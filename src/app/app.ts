@@ -5,8 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ModuleListComponent } from './shared/module-list/module-list.component';
+import { environment } from '../environments/environment.development';
 
-const BACKEND = 'https://safety-video-backend.onrender.com';
+const BACKEND = environment.backendUrl;
 const INTRO = `${BACKEND}/safety-videos-mp4/00-basis+anfang.mp4`;
 const OUTRO = `${BACKEND}/safety-videos-mp4/14-Ende.mp4`;
 
@@ -96,9 +97,7 @@ export class App {
         return parts[parts.length - 1];
       });
 
-      const backendUrl = false
-        ? 'http://localhost:5000'
-        : `https://safety-video-backend.onrender.com`;
+      const backendUrl = BACKEND;
 
       const response = await fetch(`${backendUrl}/api/merge`, {
         method: 'POST',
