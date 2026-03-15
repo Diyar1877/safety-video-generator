@@ -15,7 +15,9 @@ $safety-color: map.get(saf.$safety_palettes, 90);
 
   @media (max-width: 480px) {
     padding: 14px 12px;
-    max-height: 100vh;
+    max-height: 100dvh;
+    height: 100dvh;
+    box-sizing: border-box;
   }
 }
 
