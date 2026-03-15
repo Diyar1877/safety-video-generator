@@ -24,11 +24,13 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   gap: 12px;
 
   @media (max-width: 480px) {
-    top: 8px;
-    left: 10px;
-    right: 10px;
-    gap: 6px;
-    justify-content: flex-end;
+    position: relative;
+    top: auto;
+    right: auto;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+    z-index: 10;
   }
 }
 
@@ -42,8 +44,8 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   white-space: nowrap;
 
   @media (max-width: 480px) {
-    font-size: 10px;
-    padding: 4px 10px;
+    font-size: 11px;
+    padding: 5px 14px;
   }
 }
 
@@ -73,8 +75,8 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   }
 
   @media (max-width: 480px) {
-    font-size: 10px;
-    padding: 4px 10px;
+    font-size: 11px;
+    padding: 5px 12px;
 
     mat-icon {
       font-size: 14px;
@@ -93,6 +95,11 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   align-items: flex-start;
   overflow: hidden;
   padding: 0 16px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .corner {
