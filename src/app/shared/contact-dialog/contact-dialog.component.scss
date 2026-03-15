@@ -10,11 +10,15 @@ $safety-color: map.get(saf.$safety_palettes, 90);
   padding: 32px;
   background: $card-surface;
   color: white;
-  max-height: 80vh;
+  max-height: 90vh;
   overflow-y: auto;
 
   @media (max-width: 480px) {
     padding: 20px 16px;
+  }
+
+  @media (max-height: 600px) {
+    max-height: 85vh;
   }
 }
 
