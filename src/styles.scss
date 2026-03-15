@@ -142,3 +142,12 @@ body {
 .measurement         { background-color: rgba(193, 62, 156) !important; }
 .hazardousSubstance  { background-color: rgb(33, 147, 30) !important; }
 .controlling         { background-color: rgb(129, 8, 194) !important; }
+.alle                { background-color: rgba(209, 222, 0, 1) !important; }
+
+// ── Contact Dialog Panel ────────────────────────────────────────────────────
+.contact-dialog-panel {
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    background: #474747 !important;
+    border-radius: 12px !important;
+  }
+}

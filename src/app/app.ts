@@ -4,7 +4,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModuleListComponent } from './shared/module-list/module-list.component';
+import { ContactDialogComponent } from './shared/contact-dialog/contact-dialog.component';
 import { environment } from '../environments/environment.development';
 
 const BACKEND = environment.backendUrl;
@@ -13,7 +15,7 @@ const OUTRO = `${BACKEND}/safety-videos-mp4/14-Ende.mp4`;
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatCardModule, MatButtonModule, MatIconModule, MatProgressBarModule, ModuleListComponent],
+  imports: [RouterOutlet, MatCardModule, MatButtonModule, MatIconModule, MatProgressBarModule, MatDialogModule, ModuleListComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -22,6 +24,7 @@ export class App {
   @ViewChild(ModuleListComponent) moduleList!: ModuleListComponent;
 
   private cdr = inject(ChangeDetectorRef);
+  private dialog = inject(MatDialog);
 
   playlist: { src: string; label: string }[] = [];
   currentIndex = 0;
@@ -38,6 +41,22 @@ export class App {
 
   get hasPrev(): boolean {
     return this.currentIndex > 0;
+  }
+
+  openContactDialog(): void {
+    const dialogRef = this.dialog.open(ContactDialogComponent, {
+      width: '680px',
+      maxWidth: '95vw',
+      panelClass: 'contact-dialog-panel',
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Kontaktformular gesendet:', result);
+        alert('Vielen Dank! Wir melden uns bei Ihnen.');
+      }
+    });
   }
 
   skipPrev(): void {

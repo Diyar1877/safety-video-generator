@@ -14,11 +14,37 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   color: $text-color;
 }
 
-.website-link {
+.top-links {
   position: absolute;
   top: 16px;
   right: 20px;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @media (max-width: 480px) {
+    top: 8px;
+    right: 10px;
+    gap: 8px;
+  }
+}
+
+.beratung-btn {
+  background: $safety-color !important;
+  color: white !important;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 20px;
+  padding: 6px 18px;
+
+  @media (max-width: 480px) {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+}
+
+.website-link {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -45,8 +71,6 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   @media (max-width: 480px) {
     font-size: 11px;
     padding: 5px 10px;
-    top: 8px;
-    right: 10px;
   }
 }
 
