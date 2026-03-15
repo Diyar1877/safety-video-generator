@@ -14,11 +14,8 @@ $safety-color: map.get(saf.$safety_palettes, 90);
   overflow-y: auto;
 
   @media (max-width: 480px) {
-    padding: 20px 16px;
-  }
-
-  @media (max-height: 600px) {
-    max-height: 85vh;
+    padding: 16px 12px;
+    max-height: 100vh;
   }
 }
 
@@ -41,7 +38,8 @@ $safety-color: map.get(saf.$safety_palettes, 90);
   color: white;
 
   @media (max-width: 480px) {
-    font-size: 20px;
+    font-size: 18px;
+    margin: 0 0 4px;
   }
 }
 
@@ -49,26 +47,32 @@ $safety-color: map.get(saf.$safety_palettes, 90);
   font-size: 14px;
   color: rgba(255, 255, 255, 0.6);
   margin: 0 0 24px;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    margin: 0 0 12px;
+  }
 }
 
 .form-row {
   display: flex;
-  gap: 12px;
-  margin-bottom: 4px;
+  gap: 8px;
+  margin-bottom: 0;
 
-  @media (max-width: 599px) {
-    flex-direction: column;
-    gap: 4px;
-  }
+  &.three-col {
+    @media (max-width: 480px) {
+      flex-wrap: wrap;
+    }
 
-  &.three-col mat-form-field {
-    flex: 1;
+    mat-form-field {
+      flex: 1;
 
-    &:first-child {
-      flex: 0 0 120px;
+      &:first-child {
+        flex: 0 0 100px;
 
-      @media (max-width: 599px) {
-        flex: 1;
+        @media (max-width: 480px) {
+          flex: 0 0 100%;
+        }
       }
     }
   }
@@ -128,30 +132,30 @@ $safety-color: map.get(saf.$safety_palettes, 90);
 .modules-section {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 24px;
-  margin: 16px 0;
+  gap: 6px 16px;
+  margin: 12px 0;
 
   @media (max-width: 480px) {
-    gap: 6px 12px;
+    gap: 4px 8px;
   }
 }
 
 .module-toggle {
-  width: calc(50% - 12px);
+  width: calc(50% - 8px);
 
-  @media (max-width: 480px) {
+  @media (max-width: 360px) {
     width: 100%;
   }
 
   ::ng-deep .mdc-label {
     display: flex !important;
     align-items: center !important;
-    gap: 8px;
+    gap: 6px;
     color: white !important;
     font-size: 14px;
 
     @media (max-width: 480px) {
-      font-size: 12px;
+      font-size: 11px;
       gap: 4px;
     }
   }
