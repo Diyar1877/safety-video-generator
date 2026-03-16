@@ -59,12 +59,14 @@
     @for (mod of modules; track mod.name; let i = $index) {
       @if (i > 0) {
         <div class="module-toggle">
+          @if (mod.name === 'userAdministration') {
+            <div class="locked-overlay"
+                 matTooltip="Das Modul Basis ist immer mit dem Paket"
+                 matTooltipPosition="below"></div>
+          }
           <mat-slide-toggle
             [ngModel]="mod.enabled"
-            (ngModelChange)="mod.enabled = $event"
-            [class.locked]="mod.name === 'userAdministration'"
-            [matTooltip]="mod.name === 'userAdministration' ? 'Das Modul Basis ist immer mit dem Paket' : ''"
-            matTooltipPosition="below">
+            (ngModelChange)="mod.enabled = $event">
             <div class="hexagon-small {{ mod.name }}">
               <div class="hex-icon-div-small">
                 <mat-icon class="hexIcon" fontSet="material-symbols-outlined">{{ mod.icon }}</mat-icon>

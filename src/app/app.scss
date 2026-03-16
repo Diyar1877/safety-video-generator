@@ -37,15 +37,19 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
 .beratung-btn {
   background: $safety-color !important;
   color: white !important;
-  font-weight: 600;
-  font-size: 13px;
-  border-radius: 20px;
-  padding: 6px 18px;
+  font-weight: 450;
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 3px 10px;
+  height: 34px;
   white-space: nowrap;
+  color: white !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 480px) {
     font-size: 11px;
-    padding: 5px 14px;
+    padding: 3px 8px;
+    height: 30px;
   }
 }
 

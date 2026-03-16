@@ -21,9 +21,19 @@
   }
 }
 
-::ng-deep .mat-mdc-slide-toggle.locked .mdc-switch,
-::ng-deep .mat-mdc-slide-toggle.locked .mdc-label {
-  pointer-events: none;
+.half-width {
+  position: relative;
+}
+
+.locked-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  user-select: none;
+  cursor: default;
 }
 
 :host ::ng-deep .mdc-label {

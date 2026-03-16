@@ -30,4 +30,5 @@ export class ModuleListComponent {
     { name: 'hazardousSubstance', label: 'Gefahrstoffmanagement',        file: '12-Gefahrstoffe.mp4',                 enabled: false },
     { name: 'controlling',        label: 'Monitoring',                   file: '13-Monitoring.mp4',                   enabled: false },
   ];
+
 }
