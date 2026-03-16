@@ -34,15 +34,43 @@
     </mat-card>
 
     @if (playerVisible) {
-      <div class="video-wrapper">
+      <div class="video-wrapper" [class.css-fullscreen]="cssFullscreen">
+        <button mat-icon-button class="fullscreen-btn" (click)="toggleFullscreen()">
+          <mat-icon>{{ cssFullscreen ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+        </button>
         <video
           #videoPlayer
-          controls
+          [controls]="!cssFullscreen"
           playsinline
           webkit-playsinline
           class="video-player"
-          (ended)="onVideoEnded()">
+          (ended)="onVideoEnded()"
+          (timeupdate)="onTimeUpdate()"
+          (click)="onVideoTap()">
         </video>
+
+        <!-- Custom Controls im CSS-Fullscreen -->
+        @if (cssFullscreen) {
+          <div class="custom-controls">
+            <button mat-icon-button (click)="togglePlay()">
+              <mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
+            </button>
+            <span class="time-display">{{ currentTime }} / {{ duration }}</span>
+            <span class="control-label">{{ currentLabel }}</span>
+            <button mat-icon-button [disabled]="!hasPrev" (click)="skipPrev()">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button mat-icon-button [disabled]="!hasNext" (click)="skipNext()">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+            <button mat-icon-button (click)="toggleMute()">
+              <mat-icon>{{ isMuted ? 'volume_off' : 'volume_up' }}</mat-icon>
+            </button>
+          </div>
+          <input type="range" class="custom-seekbar" min="0" [max]="seekMax" [value]="seekValue"
+                 (input)="onSeek($event)" />
+        }
+
         @if (merging) {
           <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         }
