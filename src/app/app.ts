@@ -89,9 +89,15 @@ export class App {
     if (index < this.playlist.length) {
       this.currentIndex = index;
       const video = this.videoPlayer.nativeElement;
+      const wasFullscreen = !!(document.fullscreenElement || (document as any).webkitFullscreenElement);
       video.src = this.playlist[index].src;
       video.load();
-      video.play();
+      video.addEventListener('loadedmetadata', () => {
+        video.play();
+        if (wasFullscreen) {
+          (video.requestFullscreen?.() || (video as any).webkitEnterFullscreen?.());
+        }
+      }, { once: true });
     }
   }
 
