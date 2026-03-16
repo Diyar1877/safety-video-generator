@@ -88,8 +88,10 @@ export class App {
   playAt(index: number): void {
     if (index < this.playlist.length) {
       this.currentIndex = index;
-      this.videoPlayer.nativeElement.src = this.playlist[index].src;
-      this.videoPlayer.nativeElement.play();
+      const video = this.videoPlayer.nativeElement;
+      video.src = this.playlist[index].src;
+      video.load();
+      video.play();
     }
   }
 
@@ -135,13 +137,13 @@ export class App {
 
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'safety2-praesentation.mp4';
+      a.download = 'safety2-Präsentation.mp4';
       a.click();
 
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Fehler beim Download:', error);
-      alert('Fehler beim Zusammenfügen. Läuft das Backend? (backend/.venv/bin/python backend/app.py)');
+      alert('Fehler beim Zusammenfügen.');
     } finally {
       this.merging = false;
       this.cdr.detectChanges();
