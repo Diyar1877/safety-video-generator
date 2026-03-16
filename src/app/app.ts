@@ -96,6 +96,7 @@ export class App {
       );
 
       if (wasFullscreen) {
+        // iOS native Fullscreen: verlassen, neu laden, wieder rein
         (video as any).webkitExitFullscreen?.() || document.exitFullscreen?.();
         setTimeout(() => {
           video.src = this.playlist[index].src;
