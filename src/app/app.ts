@@ -90,14 +90,23 @@ export class App {
       this.currentIndex = index;
       const video = this.videoPlayer.nativeElement;
       const wasFullscreen = !!(document.fullscreenElement || (document as any).webkitFullscreenElement);
-      video.src = this.playlist[index].src;
-      video.load();
-      video.addEventListener('loadedmetadata', () => {
+
+      if (wasFullscreen) {
+        // iOS: Fullscreen verlassen, neues Video laden, Fullscreen wieder rein
+        ((video as any).webkitExitFullscreen?.() || document.exitFullscreen?.());
+        setTimeout(() => {
+          video.src = this.playlist[index].src;
+          video.load();
+          video.addEventListener('loadedmetadata', () => {
+            video.play();
+            (video as any).webkitEnterFullscreen?.() || video.requestFullscreen?.();
+          }, { once: true });
+        }, 300);
+      } else {
+        video.src = this.playlist[index].src;
+        video.load();
         video.play();
-        if (wasFullscreen) {
-          (video.requestFullscreen?.() || (video as any).webkitEnterFullscreen?.());
-        }
-      }, { once: true });
+      }
     }
   }
 
