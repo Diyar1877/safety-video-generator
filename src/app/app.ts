@@ -30,13 +30,6 @@ export class App {
   currentIndex = 0;
   playerVisible = false;
   merging = false;
-  cssFullscreen = false;
-  isPlaying = false;
-  isMuted = false;
-  currentTime = '0:00';
-  duration = '0:00';
-  seekValue = 0;
-  seekMax = 100;
 
   get currentLabel(): string {
     return this.playlist[this.currentIndex]?.label ?? '';
@@ -96,9 +89,27 @@ export class App {
     if (index < this.playlist.length) {
       this.currentIndex = index;
       const video = this.videoPlayer.nativeElement;
-      video.src = this.playlist[index].src;
-      video.load();
-      video.play();
+      const wasFullscreen = !!(
+        document.fullscreenElement ||
+        (document as any).webkitFullscreenElement ||
+        (video as any).webkitDisplayingFullscreen
+      );
+
+      if (wasFullscreen) {
+        (video as any).webkitExitFullscreen?.() || document.exitFullscreen?.();
+        setTimeout(() => {
+          video.src = this.playlist[index].src;
+          video.load();
+          video.addEventListener('loadedmetadata', () => {
+            video.play();
+            (video as any).webkitEnterFullscreen?.() || video.requestFullscreen?.();
+          }, { once: true });
+        }, 300);
+      } else {
+        video.src = this.playlist[index].src;
+        video.load();
+        video.play();
+      }
     }
   }
 
@@ -106,53 +117,6 @@ export class App {
     if (this.hasNext) {
       this.playAt(this.currentIndex + 1);
     }
-  }
-
-  toggleFullscreen(): void {
-    this.cssFullscreen = !this.cssFullscreen;
-  }
-
-  togglePlay(): void {
-    const video = this.videoPlayer.nativeElement;
-    if (video.paused) {
-      video.play();
-      this.isPlaying = true;
-    } else {
-      video.pause();
-      this.isPlaying = false;
-    }
-  }
-
-  onVideoTap(): void {
-    if (this.cssFullscreen) {
-      this.togglePlay();
-    }
-  }
-
-  toggleMute(): void {
-    const video = this.videoPlayer.nativeElement;
-    video.muted = !video.muted;
-    this.isMuted = video.muted;
-  }
-
-  onTimeUpdate(): void {
-    const video = this.videoPlayer.nativeElement;
-    this.isPlaying = !video.paused;
-    this.currentTime = this.formatTime(video.currentTime);
-    this.duration = this.formatTime(video.duration || 0);
-    this.seekValue = video.currentTime;
-    this.seekMax = video.duration || 100;
-  }
-
-  onSeek(event: Event): void {
-    const value = +(event.target as HTMLInputElement).value;
-    this.videoPlayer.nativeElement.currentTime = value;
-  }
-
-  private formatTime(seconds: number): string {
-    const m = Math.floor(seconds / 60);
-    const s = Math.floor(seconds % 60);
-    return `${m}:${s.toString().padStart(2, '0')}`;
   }
 
   skipNext(): void {
