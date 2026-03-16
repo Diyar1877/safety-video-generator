@@ -89,28 +89,11 @@ export class App {
     if (index < this.playlist.length) {
       this.currentIndex = index;
       const video = this.videoPlayer.nativeElement;
-      const wasFullscreen = !!(
-        document.fullscreenElement ||
-        (document as any).webkitFullscreenElement ||
-        (video as any).webkitDisplayingFullscreen
-      );
-
-      if (wasFullscreen) {
-        // iOS native Fullscreen: verlassen, neu laden, wieder rein
-        (video as any).webkitExitFullscreen?.() || document.exitFullscreen?.();
-        setTimeout(() => {
-          video.src = this.playlist[index].src;
-          video.load();
-          video.addEventListener('loadedmetadata', () => {
-            video.play();
-            (video as any).webkitEnterFullscreen?.() || video.requestFullscreen?.();
-          }, { once: true });
-        }, 300);
-      } else {
-        video.src = this.playlist[index].src;
-        video.load();
+      video.src = this.playlist[index].src;
+      video.load();
+      video.addEventListener('canplay', () => {
         video.play();
-      }
+      }, { once: true });
     }
   }
 
