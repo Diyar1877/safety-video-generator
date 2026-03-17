@@ -24,13 +24,11 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   gap: 12px;
 
   @media (max-width: 480px) {
-    position: relative;
-    top: auto;
-    right: auto;
-    justify-content: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    left: auto;
     gap: 8px;
-    margin-top: 8px;
-    padding-right: 12px;
     z-index: 10;
   }
 }
@@ -38,13 +36,12 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
 .beratung-btn {
   background: $safety-color !important;
   color: white !important;
-  font-weight: 450;
-  font-size: 12px;
+  font-weight: 600;
+  font-size: 13px;
   border-radius: 12px;
   padding: 3px 10px;
   height: 34px;
   white-space: nowrap;
-  color: white !important;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 480px) {
@@ -151,7 +148,7 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   @media (max-width: 480px) {
     width: 180px;
     height: 90px;
-    top: 20px;
+    top: 50px;
   }
 }
 
@@ -170,7 +167,7 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   }
 
   @media (max-width: 480px) {
-    top: 115px;
+    top: 145px;
   }
 }
 
@@ -220,12 +217,12 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   margin-bottom: 40px;
 
   @media (max-width: 768px) {
-    margin-top: 280px;
+    margin-top: 320px;
     gap: 16px;
   }
 
   @media (max-width: 480px) {
-    margin-top: 230px;
+    margin-top: 260px;
     width: 95%;
     gap: 12px;
     margin-bottom: 24px;
