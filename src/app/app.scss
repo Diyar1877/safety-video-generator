@@ -34,20 +34,21 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
 }
 
 .beratung-btn {
-  background: $safety-color !important;
-  color: white !important;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: #c4d000;
+  color: white;
+  text-decoration: none;
   font-size: 13px;
-  border-radius: 12px;
-  padding: 3px 10px;
-  height: 34px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
   white-space: nowrap;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 
   @media (max-width: 480px) {
     font-size: 11px;
-    padding: 3px 8px;
-    height: 30px;
+    padding: 5px 12px;
   }
 }
 
