@@ -44,12 +44,17 @@ export class App {
   }
 
   openContactDialog(): void {
+    const enabledNames = this.moduleList.modules
+      .filter(m => m.enabled)
+      .map(m => m.name);
+
     const dialogRef = this.dialog.open(ContactDialogComponent, {
       width: '680px',
       maxWidth: '95vw',
       maxHeight: '95vh',
       panelClass: 'contact-dialog-panel',
       autoFocus: false,
+      data: { enabledModules: enabledNames },
     });
 
     dialogRef.afterClosed().subscribe(result => {

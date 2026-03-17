@@ -218,7 +218,7 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   margin-bottom: 40px;
 
   @media (max-width: 768px) {
-    margin-top: 320px;
+    margin-top: 310px;
     gap: 16px;
   }
 
@@ -243,11 +243,11 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
     }
 
     @media (max-width: 768px) {
-      margin-top: 280px;
+      margin-top: 310px;
     }
 
     @media (max-width: 480px) {
-      margin-top: 230px;
+      margin-top: 260px;
       width: 95%;
     }
   }
@@ -301,7 +301,7 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
 .card-actions {
   display: flex;
   justify-content: center;
-  padding: 12px 16px 16px;
+  padding: 12px 16px 19px;
 }
 
 .video-erstellen-btn {
@@ -316,6 +316,7 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   flex-direction: column;
   gap: 8px;
   min-width: 0;
+  justify-content: space-between;
 }
 
 .video-player {
@@ -333,7 +334,7 @@ $safety-color: map.get(saf.$safety_palettes, 90);   // #dfed21
   width: 100%;
   background-color: $card-surface;
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 12px 16px;
   box-sizing: border-box;
   gap: 8px;
 

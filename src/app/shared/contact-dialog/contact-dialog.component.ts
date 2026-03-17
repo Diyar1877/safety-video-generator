@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -56,7 +56,18 @@ export class ContactDialogComponent {
     { name: 'controlling',        label: 'Monitoring',                     icon: 'monitoring',    enabled: false },
   ];
 
-  constructor(private dialogRef: MatDialogRef<ContactDialogComponent>) {}
+  constructor(
+    private dialogRef: MatDialogRef<ContactDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: { enabledModules: string[] } | null,
+  ) {
+    if (data?.enabledModules) {
+      for (const mod of this.modules) {
+        if (mod.name === 'alle') continue;
+        if (mod.name === 'userAdministration') continue;
+        mod.enabled = data.enabledModules.includes(mod.name);
+      }
+    }
+  }
 
   onAlleChange(enabled: boolean): void {
     this.modules[0].enabled = enabled;
